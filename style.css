@@ -17,6 +17,7 @@ body {
   max-width: 900px;
   animation: fadeIn 1s ease-in;
   border: 2px solid #FFD700;
+  overflow-x: auto; /* Adicionado para evitar quebra de layout */
 }
 
 h1 {
@@ -35,6 +36,7 @@ table {
   overflow: hidden;
   border-radius: 12px;
   border: 1px solid #FFD700;
+  min-width: 700px; /* Ajuda a manter legibilidade em rolagem horizontal */
 }
 
 th,
@@ -99,3 +101,43 @@ tr:hover {
   }
 }
 
+/* 🔧 Responsividade para dispositivos menores */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5em;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 0.9em;
+  }
+
+  td input {
+    width: 35px;
+    font-size: 0.9em;
+  }
+
+  table {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  td input {
+    width: 30px;
+    font-size: 0.8em;
+  }
+
+  th, td {
+    font-size: 0.75em;
+    padding: 6px;
+  }
+
+  h1 {
+    font-size: 1.3em;
+  }
+}
