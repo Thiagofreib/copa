@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #000000;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+  width: 100%;
+  max-width: 900px;
+  animation: fadeIn 1s ease-in;
+  border: 2px solid #FFD700;
+}
+
+h1 {
+  text-align: center;
+  color: #FFD700;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px #FFD700;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid #FFD700;
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+th {
+  background-color: #FFD700;
+  color: #000000;
+  text-transform: uppercase;
+}
+
+td {
+  background-color: #000000;
+  color: #FFFFFF;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border-bottom: 1px solid #333;
+}
+
+.Pontos {
+  background-color: #FFD700;
+  color: #000000;
+}
+
+td input {
+  width: 45px;
+  padding: 4px;
+  text-align: center;
+  font-weight: bold;
+  background-color: #1a1a1a;
+  border: 1px solid #FFD700;
+  border-radius: 6px;
+  color: #FFD700;
+}
+
+td:hover {
+  background-color: #111111;
+}
+
+tr {
+  transition: transform 0.2s;
+}
+
+tr:hover {
+  transform: scale(1.01);
+  background-color: #111111;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
