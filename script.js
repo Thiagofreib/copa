@@ -55,4 +55,72 @@ document.addEventListener("DOMContentLoaded", () => {
       input.addEventListener("input", atualizarTabela);
     });
   });
+
+  
+
+
+
+
+  const db = firebase.database();
+const tabela = document.querySelector("#tabela tbody");
+
+// Lista dos times, na ordem das linhas
+const times = [
+  "Atletico de Madrid",
+  "Barcelona",
+  "Liverpool",
+  "Bayern München",
+  "Manchester City",
+  "PSG"
+];
+
+// Atualiza o Firebase quando um input mudar
+tabela.addEventListener("input", (e) => {
+  const linha = e.target.closest("tr");
+  const index = [...tabela.rows].indexOf(linha);
+  const time = times[index];
+
+  const V = parseInt(linha.cells[3].querySelector("input").value) || 0;
+  const E = parseInt(linha.cells[4].querySelector("input").value) || 0;
+  const D = parseInt(linha.cells[5].querySelector("input").value) || 0;
+  const GP = parseInt(linha.cells[6].querySelector("input").value) || 0;
+  const GC = parseInt(linha.cells[7].querySelector("input").value) || 0;
+
+  const J = V + E + D;
+  const PTS = V * 3 + E;
+  const SG = GP - GC;
+
+  // Atualiza células calculadas
+  linha.cells[1].textContent = PTS;
+  linha.cells[2].textContent = J;
+  linha.cells[8].textContent = SG;
+
+  // Envia para o Firebase
+  db.ref("tabela/" + time).set({ V, E, D, GP, GC });
+});
+
+// Sincroniza em tempo real com Firebase
+times.forEach((time, index) => {
+  const linha = tabela.rows[index];
+  db.ref("tabela/" + time).on("value", (snapshot) => {
+    const dados = snapshot.val();
+    if (dados) {
+      const { V = 0, E = 0, D = 0, GP = 0, GC = 0 } = dados;
+
+      const J = V + E + D;
+      const PTS = V * 3 + E;
+      const SG = GP - GC;
+
+      linha.cells[1].textContent = PTS;
+      linha.cells[2].textContent = J;
+      linha.cells[3].querySelector("input").value = V;
+      linha.cells[4].querySelector("input").value = E;
+      linha.cells[5].querySelector("input").value = D;
+      linha.cells[6].querySelector("input").value = GP;
+      linha.cells[7].querySelector("input").value = GC;
+      linha.cells[8].textContent = SG;
+    }
+  });
+});
+
   
